@@ -42,6 +42,9 @@ function start() {
     highlight_select_users();
 }
 
+// part of this code from a bookmarklet that someone posted.
+// TODO: Need to find the source and give credit
+
 function add_collapse_comments_buttons() {
     var current_level_width = 0;
     var inner_level_width = 1000;
@@ -53,7 +56,7 @@ function add_collapse_comments_buttons() {
         } else if (window.location.href.indexOf('threads?id=') != -1) {
             $('center > table > tbody > tr > td > table span.comhead').prepend(span_html);
         }
-        $('.expand-handle').live('click', function () {
+        $(document).on('click', '.expand-handle', function () {
             current_level_width = parseInt($(this).closest('tr').find('td:eq(0) > img').attr('width'), 10);
             $(this).closest('table').closest('tr').nextAll().each(function (index, el) {
                 var elWidth = parseInt($('tbody > tr > td > img', this).attr('width'), 10);
@@ -79,7 +82,7 @@ function add_collapse_comments_buttons() {
             });
         });
 
-        $('.expand-handle-collapsed').live('click', function () {
+        $(document).on('click', '.expand-handle-collapsed', function () {
             current_level_width = parseInt($(this).closest('tr').find('td > img').attr('width'), 10);
             $(this).closest('table').closest('tr').nextAll().each(function (index, el) {
                 var elWidth = parseInt($('tbody > tr > td > img', this).attr('width'), 10);
